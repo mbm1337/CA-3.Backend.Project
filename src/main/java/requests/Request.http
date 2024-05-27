@@ -1,0 +1,89 @@
+### Log ind med en bruger
+POST http://localhost:7000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin",
+  "password": "1234"
+}
+
+### Registrering af en bruger
+POST http://localhost:7000/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "admin",
+  "password": "1234"
+}
+
+### Get all recipe
+GET http://localhost:7000/api/recipe
+
+### Get recipe by id
+GET http://localhost:7000/api/recipe/1
+
+### Get recipe by email/username
+GET http://localhost:7000/api/recipe/personal/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NDYyMzIsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.TkqNmEHME2aEtFmT7mETLNnrxpKjHF1AFaAj3FmQ6z0
+
+### Upload recipe
+POST http://localhost:7000/api/recipe/
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NTEyMjgsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.uTsIxSQjRChqUrVbPgYWkOK2fF0wlZIy8c5yUnlJEno
+
+{
+  "name": "kagasde",
+  "ingredients": "5 æg og 1asdasd kg mel",
+  "instructions": "Bland æg og masdasdel sammen",
+  "user": {
+     "email": "admin"
+  }
+}
+
+### Update recipe
+PUT http://localhost:7000/api/recipe/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NDU4MjksImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.a_fYu2ysQ3schjpDjBkAn-q8YbnfGrD71W6op2aX9Qs
+
+{
+  "id": 1,
+  "name": "kage",
+  "ingredients": "5 æg og 1 kg mel",
+  "instructions": "Bland æg og mel sammen og bag i ovnen"
+}
+
+### Delete recipe
+DELETE http://localhost:7000/api/recipe/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NDU4MjksImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.a_fYu2ysQ3schjpDjBkAn-q8YbnfGrD71W6op2aX9Qs
+
+2
+
+### Add role to user
+POST http://localhost:7000/api/auth/addroletouser
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NDYxMzEsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.1P8vhOjF1BQG-XfpcELzTJyE8LSJLJodTg7WpbufGFM
+
+{
+"email": "admin",
+"role": "admin"
+}
+
+### Get all roles
+GET http://localhost:7000/api/auth/roles
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NDYxMzEsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.1P8vhOjF1BQG-XfpcELzTJyE8LSJLJodTg7WpbufGFM
+
+### Get all users
+GET http://localhost:7000/api/auth/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NDU4MjksImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.a_fYu2ysQ3schjpDjBkAn-q8YbnfGrD71W6op2aX9Qs
+
+### Slet en bruger
+DELETE http://localhost:7000/api/auth/delete
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NDU4MjksImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.a_fYu2ysQ3schjpDjBkAn-q8YbnfGrD71W6op2aX9Qs
+
+"sd"
+
+### post comment for recipe id1
+
+POST http://localhost:7000/api/comment/1/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NTEyMjgsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.uTsIxSQjRChqUrVbPgYWkOK2fF0wlZIy8c5yUnlJEno
+
+{
+  "text": "This is a comment."
+}
