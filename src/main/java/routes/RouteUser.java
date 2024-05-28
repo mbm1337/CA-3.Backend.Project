@@ -23,7 +23,7 @@ public class RouteUser {
                 before(securityController.authenticate());
                 post("/login", customLogger.handleExceptions(securityController.login()), Role.ANYONE);
                 post("/register", customLogger.handleExceptions(securityController.register()), Role.ANYONE);
-                post("/addroletouser", customLogger.handleExceptions(securityController.addRoleToUser()), Role.ADMIN);
+                put("/addroletouser", customLogger.handleExceptions(securityController.addRoleToUser()), Role.ADMIN);
                 get("/users", customLogger.handleExceptions(securityController.getAllUsers(userDAO)), Role.ADMIN);
                 get("/roles", customLogger.handleExceptions(securityController.getAllRoles(userDAO)), Role.ADMIN);
                 delete("/delete", customLogger.handleExceptions(securityController.deleteUser()), Role.ADMIN);

@@ -3,7 +3,7 @@ POST http://localhost:7000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "admin",
+  "email": "jens",
   "password": "1234"
 }
 
@@ -12,9 +12,27 @@ POST http://localhost:7000/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "admin",
+  "email": "jens",
   "password": "1234"
 }
+
+### slet af en bruger
+DELETE http://localhost:7000/api/auth/delete
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY5Mjg2ODcsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.OsJo4ZKhjmKUwCrG0KeQIOHk3H6DgewhBmAKNkbhG7o
+
+
+  "admin2"
+### set role to user
+PUT http://localhost:7000/api/auth/addroletouser
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY5MzAwODIsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.verIDS58Hi36vqk4p9T2Z-YcU8G-BVbgQuUeeiyeNg4
+
+    {
+    "email": "admin3",
+    "role": "user"
+    }
+
 
 ### Get all recipe
 GET http://localhost:7000/api/recipe
@@ -23,20 +41,21 @@ GET http://localhost:7000/api/recipe
 GET http://localhost:7000/api/recipe/1
 
 ### Get recipe by email/username
-GET http://localhost:7000/api/recipe/personal/admin
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NTgyOTYsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.3R9TkwDwFq10-LBgbS4EY4GYWBuD2jznlufhP2xBl9k
+GET http://localhost:7000/api/recipe/personal/jens
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjkzMTczMCwiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.Zr5HB3PwMoVinTX2VP-FtGwSTxWWVbKN4TcwE0gCeSI
+
 
 ### Upload recipe
 POST http://localhost:7000/api/recipe/
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4ODM2OTAsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.SKktZSp4BKxfkpky78Sj959iqPJlPTepKBcW9Ns7gy8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjkzMTczMCwiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.Zr5HB3PwMoVinTX2VP-FtGwSTxWWVbKN4TcwE0gCeSI
 
 {
-  "name": "kagasde",
+  "name": "sandwich",
   "ingredients": "5 æg og 1asdasd kg mel",
   "instructions": "Bland æg og masdasdel sammen",
   "imageUrl": "demo5.jpg",
   "user": {
-     "email": "admin"
+     "email": "jens"
   }
 }
 
@@ -68,32 +87,38 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRta
 
 ### Get all roles
 GET http://localhost:7000/api/auth/roles
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NDYxMzEsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.1P8vhOjF1BQG-XfpcELzTJyE8LSJLJodTg7WpbufGFM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY5MjQ1ODUsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.dvFncSYZlcbRg-k33BrMFftbxWgwIPb-P5BVUMZv7Ys
 
 ### Get all users
 GET http://localhost:7000/api/auth/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NDU4MjksImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.a_fYu2ysQ3schjpDjBkAn-q8YbnfGrD71W6op2aX9Qs
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY5MjcyMTEsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.1jalw3lsBOevqZCN8u9tGHYmXzarwJztEbNNVHl3Hgw
 
 ### Slet en bruger
 DELETE http://localhost:7000/api/auth/delete
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NDU4MjksImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.a_fYu2ysQ3schjpDjBkAn-q8YbnfGrD71W6op2aX9Qs
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY5MjQ1ODUsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.dvFncSYZlcbRg-k33BrMFftbxWgwIPb-P5BVUMZv7Ys
 
-"sd"
+"USERNAME"
 
 ### post comment for recipe id1
 
 POST http://localhost:7000/api/comment/1/
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NTkyNTQsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.5rQwHABO5pcoPgJCo3kiyN0WhG4yf5mm8SzzN2V7KUU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjkzMzYwNSwiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.SDmdVc6VPL2KYPRZkFs6f7603R1ciRwj1nEdoP3sqJM
 email: admin
 
 {
-  "text": "This is a commen21."
+  "text": "sindsyg kage."
 }
 
 ### Get comment by recipe id1
-GET http://localhost:7000/api/comment/1
+GET http://localhost:7000/api/comment/8
 
 ### make foverrit by /favorite/{user_email}/{recipe_id}
 POST http://localhost:7000/api/recipe/favorite/admin/4/
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NTkyNTQsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.5rQwHABO5pcoPgJCo3kiyN0WhG4yf5mm8SzzN2V7KUU
+### delete comment
+DELETE http://localhost:7000/api/comment/
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjkzMzg4OSwiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.IyTIaRKuCbMlXWMD9Znt05cFVyJmtSTOIJqept2AZi0
 
+{
+5
+}

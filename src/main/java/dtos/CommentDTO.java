@@ -13,4 +13,5 @@ public class CommentDTO {
     private Integer id;
     private String text;
     private Date date;
+    private String userEmail;
 }
