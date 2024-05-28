@@ -61,22 +61,46 @@ public class CommentController {
 
     public static Handler create(CommentDAO dao, RecipeDAO recipeDAO, UserDAO userDAO) {
         return ctx -> {
-            Comment comment = ctx.bodyAsClass(Comment.class);
-            Integer recipeId = Integer.parseInt(ctx.pathParam("recipe_id"));
-            Recipe recipe = recipeDAO.getById(recipeId);
-            User user = userDAO.getByString(ctx.header("email"));
-            if (recipe != null && user != null) {
+            try {
+                // Parse and validate input data
+                Comment comment = ctx.bodyAsClass(Comment.class);
+                Integer recipeId = Integer.parseInt(ctx.pathParam("recipe_id"));
+                String userEmail = ctx.header("email");
+
+                if (userEmail == null || userEmail.isEmpty()) {
+                    throw new ApiException(HttpStatus.BAD_REQUEST.getCode(), "Email header is missing or empty.", timestamp);
+                }
+
+                // Retrieve associated entities
+                Recipe recipe = recipeDAO.getById(recipeId);
+                User user = userDAO.getByString(userEmail);
+
+                if (recipe == null) {
+                    throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "Recipe not found.", timestamp);
+                }
+
+                if (user == null) {
+                    throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "User not found.", timestamp);
+                }
+
+                // Set the relations and create the comment
                 comment.setRecipe(recipe);
                 comment.setUser(user);
+                comment.setDate(new Date()); // Set the date to the current date and time
                 Comment createdComment = dao.create(comment);
                 CommentDTO dto = convertToDTO(createdComment);
+
                 if (dto != null) {
                     ctx.status(HttpStatus.OK).json(dto);
                 } else {
                     throw new ApiException(HttpStatus.INTERNAL_SERVER_ERROR.getCode(), "Couldn't create Comment.", timestamp);
                 }
-            } else {
-                throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "Recipe or User not found.", timestamp);
+            } catch (NumberFormatException e) {
+                throw new ApiException(HttpStatus.BAD_REQUEST.getCode(), "Invalid recipe ID format.", timestamp);
+            } catch (ApiException e) {
+                ctx.status(e.getStatusCode()).json(e.getMessage());
+            } catch (Exception e) {
+                ctx.status(HttpStatus.INTERNAL_SERVER_ERROR).json("Unexpected error occurred: " + e.getMessage());
             }
         };
     }

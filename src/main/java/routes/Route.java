@@ -20,7 +20,7 @@ public class Route {
 
 
     public static EndpointGroup addRoutes() {
-        return combineRoutes(routeRecipe.recipeRoutes(), routeUser.securityRoutes());
+        return combineRoutes(routeRecipe.recipeRoutes(), routeComment.commentRoutes(), routeUser.securityRoutes());
     }
 
     private static EndpointGroup combineRoutes(EndpointGroup... endpointGroups) {

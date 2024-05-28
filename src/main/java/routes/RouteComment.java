@@ -32,8 +32,8 @@ public class RouteComment {
         return () -> {
             path("/comment", () -> {
                 before(securityController.authenticate());
-                get("/", customLogger.handleExceptions(CommentController.getAllByRecipeId(commentDAO)), Role.ANYONE);
                 path("/{recipe_id}", () -> {
+                    get("/", customLogger.handleExceptions(CommentController.getAllByRecipeId(commentDAO)), Role.ANYONE);
                     post("/", customLogger.handleExceptions(CommentController.create(commentDAO, recipeDAO, userDAO)), Role.USER, Role.ADMIN);
                 });
                 put("/{user_id}", customLogger.handleExceptions(CommentController.update(commentDAO, userDAO)), Role.USER, Role.ADMIN);

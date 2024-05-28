@@ -81,9 +81,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRta
 
 ### post comment for recipe id1
 
-POST http://localhost:7000/api/comment/1/admin
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NTEyMjgsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.uTsIxSQjRChqUrVbPgYWkOK2fF0wlZIy8c5yUnlJEno
+POST http://localhost:7000/api/comment/1/
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NTQxNTAsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.PEzeYNJhbdi3CO7Z704DVfreR4RbMAvg_hLTOG6L9W0
+email: admin
 
 {
-  "text": "This is a comment."
+  "text": "This is a commen21."
 }
+
+### Get comment by recipe id1
+GET http://localhost:7000/api/comment/1
