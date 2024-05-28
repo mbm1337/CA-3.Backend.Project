@@ -129,5 +129,24 @@ public class RecipeController {
             }
         };
     }
+
+
+    public static Handler addFavorite(RecipeDAO dao) {
+        return ctx -> {
+            String userEmail = ctx.pathParam("user_email");
+            int recipeId = Integer.parseInt(ctx.pathParam("recipe_id"));
+            dao.addFavorite(userEmail, recipeId);
+            ctx.status(HttpStatus.OK);
+        };
+    }
+
+    public static Handler removeFavorite(RecipeDAO dao) {
+        return ctx -> {
+            String userEmail = ctx.pathParam("user_email");
+            int recipeId = Integer.parseInt(ctx.pathParam("recipe_id"));
+            dao.removeFavorite(userEmail, recipeId);
+            ctx.status(HttpStatus.OK);
+        };
+    }
 }
 

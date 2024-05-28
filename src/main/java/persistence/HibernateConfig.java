@@ -125,6 +125,8 @@ public class HibernateConfig {
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Role.class);
         configuration.addAnnotatedClass(Comment.class);
+        configuration.addAnnotatedClass(Favorites.class);
+        configuration.addAnnotatedClass(FavoritesId.class);
     }
 
     private static EntityManagerFactory getEntityManagerFactoryConfigDevelopment() {
