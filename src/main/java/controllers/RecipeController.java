@@ -25,6 +25,7 @@ public class RecipeController {
                 .name(recipe.getName())
                 .ingredients(recipe.getIngredients())
                 .instructions(recipe.getInstructions())
+                .imageUrl(recipe.getImageUrl())
                 .build();
     }
 

@@ -28,12 +28,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRta
 
 ### Upload recipe
 POST http://localhost:7000/api/recipe/
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NTkyNTQsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.5rQwHABO5pcoPgJCo3kiyN0WhG4yf5mm8SzzN2V7KUU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4ODM2OTAsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.SKktZSp4BKxfkpky78Sj959iqPJlPTepKBcW9Ns7gy8
 
 {
   "name": "kagasde",
   "ingredients": "5 æg og 1asdasd kg mel",
   "instructions": "Bland æg og masdasdel sammen",
+  "imageUrl": "demo5.jpg",
   "user": {
      "email": "admin"
   }
