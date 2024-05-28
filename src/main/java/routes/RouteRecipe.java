@@ -34,6 +34,10 @@ public class RouteRecipe {
                 post("/", customLogger.handleExceptions(RecipeController.create(recipeDAO)), Role.USER, Role.ADMIN);
                 put("/{user_id}", customLogger.handleExceptions(RecipeController.update(recipeDAO, userDAO)), Role.USER, Role.ADMIN);
                 delete("/{user_id}", customLogger.handleExceptions(RecipeController.delete(recipeDAO)), Role.USER, Role.ADMIN);
+
+                // Add endpoints for favorites
+                post("/favorite/{user_email}/{recipe_id}", customLogger.handleExceptions(RecipeController.addFavorite(recipeDAO)), Role.USER, Role.ADMIN);
+                delete("/favorite/{user_email}/{recipe_id}", customLogger.handleExceptions(RecipeController.removeFavorite(recipeDAO)), Role.USER, Role.ADMIN);
             });
         };
     }

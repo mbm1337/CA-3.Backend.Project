@@ -25,6 +25,7 @@ public class RecipeController {
                 .name(recipe.getName())
                 .ingredients(recipe.getIngredients())
                 .instructions(recipe.getInstructions())
+                .imageUrl(recipe.getImageUrl())
                 .build();
     }
 
@@ -127,6 +128,25 @@ public class RecipeController {
             } else {
                 throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "User not found for email: " + user.getEmail(), timestamp);
             }
+        };
+    }
+
+
+    public static Handler addFavorite(RecipeDAO dao) {
+        return ctx -> {
+            String userEmail = ctx.pathParam("user_email");
+            int recipeId = Integer.parseInt(ctx.pathParam("recipe_id"));
+            dao.addFavorite(userEmail, recipeId);
+            ctx.status(HttpStatus.OK);
+        };
+    }
+
+    public static Handler removeFavorite(RecipeDAO dao) {
+        return ctx -> {
+            String userEmail = ctx.pathParam("user_email");
+            int recipeId = Integer.parseInt(ctx.pathParam("recipe_id"));
+            dao.removeFavorite(userEmail, recipeId);
+            ctx.status(HttpStatus.OK);
         };
     }
 }

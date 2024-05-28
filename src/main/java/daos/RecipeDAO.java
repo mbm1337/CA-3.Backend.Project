@@ -1,5 +1,7 @@
 package daos;
 
+import persistence.model.Favorites;
+import persistence.model.FavoritesId;
 import persistence.model.Recipe;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -57,6 +59,29 @@ public class RecipeDAO extends AbstractDAO<Recipe> {
                 return 1;
             }
             return 0;
+        }
+    }
+
+
+    public void addFavorite(String userEmail, int recipeId) {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            User user = em.find(User.class, userEmail);
+            Recipe recipe = em.find(Recipe.class, recipeId);
+            Favorites favorite = new Favorites(new FavoritesId(userEmail, recipeId), user, recipe);
+            em.persist(favorite);
+            em.getTransaction().commit();
+        }
+    }
+
+    public void removeFavorite(String userEmail, int recipeId) {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            Favorites favorite = em.find(Favorites.class, new FavoritesId(userEmail, recipeId));
+            if (favorite != null) {
+                em.remove(favorite);
+            }
+            em.getTransaction().commit();
         }
     }
 }
