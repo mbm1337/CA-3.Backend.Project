@@ -37,7 +37,7 @@ public class RouteComment {
                     post("/", customLogger.handleExceptions(CommentController.create(commentDAO, recipeDAO, userDAO)), Role.USER, Role.ADMIN);
                 });
                 put("/{user_id}", customLogger.handleExceptions(CommentController.update(commentDAO, userDAO)), Role.USER, Role.ADMIN);
-                delete("/", customLogger.handleExceptions(CommentController.delete(commentDAO)), Role.USER, Role.ADMIN);
+                delete("/", customLogger.handleExceptions(CommentController.delete(commentDAO,userDAO)), Role.USER, Role.ADMIN);
             });
         };
     }

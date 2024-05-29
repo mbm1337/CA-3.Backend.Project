@@ -46,17 +46,34 @@ public class CommentController {
         };
     }
 
-    public static Handler delete(CommentDAO dao) {
+    public static Handler delete(CommentDAO dao,UserDAO userDAO) {
         return ctx -> {
+            String email = ctx.pathParam("user_id");
             int id = ctx.bodyAsClass(Integer.class);
+
+
             Comment foundComment = dao.getById(id);
-            if (foundComment != null) {
+            if(foundComment == null) {
+                throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "Comment was not found: " + id, timestamp);
+            }
+
+            User currentUser = userDAO.getByString(email);
+            if (currentUser == null) {
+                throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "User was not found: " + email, timestamp);
+            }
+
+            boolean isAdmin = currentUser.getRoles().stream()
+                    .anyMatch(role -> role.getName().equals("admin"));
+            boolean isOwner = foundComment.getUser().getEmail().equals(email);
+
+            if (isAdmin || isOwner) {
                 CommentDTO dto = convertToDTO(foundComment);
                 dao.delete(foundComment.getId());
                 ctx.status(HttpStatus.OK).json(dto);
             } else {
-                throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "Comment was not found: " + id, timestamp);
+                throw new ApiException(HttpStatus.FORBIDDEN.getCode(), "You are not authorized to delete this comment", timestamp);
             }
+            
         };
     }
 
