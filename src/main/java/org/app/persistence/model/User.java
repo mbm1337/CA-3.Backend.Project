@@ -35,6 +35,9 @@ public class User implements ISecurityUser {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Recipe> recipes = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<Comment> comments = new HashSet<>();
     public User(String email, String password) {
         this.email = email;
         this.password = password;
@@ -51,6 +54,7 @@ public class User implements ISecurityUser {
         roles.add(role);
         role.getUsers().add(this);
     }
+
 
     @Override
     public void removeRole(Role role) {
@@ -73,4 +77,6 @@ public class User implements ISecurityUser {
     public boolean verifyPassword(String pw) {
         return BCrypt.checkpw(pw, this.password);
     }
+
+
 }

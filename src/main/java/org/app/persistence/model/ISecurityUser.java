@@ -10,4 +10,6 @@ public interface ISecurityUser {
     void addRole(Role role);
 
     void removeRole(Role role);
+
+
 }

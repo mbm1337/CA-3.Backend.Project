@@ -127,6 +127,7 @@ public class UserDAO implements ISecurityDAO {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             User foundUser = em.find(User.class, email);
+
             em.remove(foundUser);
             em.getTransaction().commit();
             return foundUser;
