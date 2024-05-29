@@ -3,7 +3,7 @@ POST http://localhost:7000/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "jens",
+  "email": "admin",
   "password": "1234"
 }
 
@@ -47,10 +47,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVuc
 
 ### Upload recipe
 POST http://localhost:7000/api/recipe/
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjkzMTczMCwiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.Zr5HB3PwMoVinTX2VP-FtGwSTxWWVbKN4TcwE0gCeSI
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjk3Nzk1NywiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.BLn3N--Fl-pSnYDElw_8l_lBlluEA5oXvl9k1nC8Prw
 
 {
-  "name": "sandwich",
+  "name": "mortens drømmekage",
   "ingredients": "5 æg og 1asdasd kg mel",
   "instructions": "Bland æg og masdasdel sammen",
   "imageUrl": "demo5.jpg",
@@ -102,11 +102,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRta
 ### post comment for recipe id1
 
 POST http://localhost:7000/api/comment/1/
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjkzMzYwNSwiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.SDmdVc6VPL2KYPRZkFs6f7603R1ciRwj1nEdoP3sqJM
-email: admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY5NjY5MzcsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.nrOUVS4OHCCYk9yYLZyhNlml6-8AWqOlFW3kZ1xLI50
+email: jens
 
 {
-  "text": "sindsyg kage."
+  "text": " det bare noget lort"
 }
 
 ### Get comment by recipe id1
@@ -122,3 +122,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVuc
 {
 5
 }
+
+
+### delete opskrift
+DELETE http://localhost:7000/api/recipe/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY5ODMxMDAsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.gLaSVy52QFpaaWKYof8CIsX0AM9qR8jBBxFUiUd0OnY
+
+7

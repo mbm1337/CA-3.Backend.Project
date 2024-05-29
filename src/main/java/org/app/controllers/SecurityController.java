@@ -23,6 +23,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 
 public class SecurityController implements ISecurityController {
 
@@ -129,6 +131,7 @@ public class SecurityController implements ISecurityController {
         }
         return createToken(user, ISSUER, TOKEN_EXPIRE_TIME, SECRET_KEY);
     }
+
 
     @Override
     public boolean authorize(UserDTO user, Set<String> allowedRoles) {

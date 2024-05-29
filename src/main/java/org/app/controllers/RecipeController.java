@@ -8,6 +8,7 @@ import io.javalin.http.Handler;
 import io.javalin.http.HttpStatus;
 import org.app.persistence.model.Recipe;
 import org.app.persistence.model.User;
+import org.app.routes.Role;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class RecipeController {
 
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static String timestamp = dateFormat.format(new Date());
+
 
     public static RecipeDTO convertToDTO(Recipe recipe) {
         return RecipeDTO.builder()
@@ -60,20 +62,35 @@ public class RecipeController {
         };
     }
 
-    public static Handler delete(RecipeDAO dao) {
+    public static Handler delete(RecipeDAO dao, UserDAO userDAO) {
         return ctx -> {
             String email = ctx.pathParam("user_id");
             int id = ctx.bodyAsClass(Integer.class);
+
             Recipe foundRecipe = dao.getById(id);
-            if (foundRecipe != null) {
+            if (foundRecipe == null) {
+                throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "Recipe was not found: " + id, timestamp);
+            }
+
+            User currentUser = userDAO.getByString(email);
+            if (currentUser == null) {
+                throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "User was not found: " + email, timestamp);
+            }
+
+            boolean isAdmin = currentUser.getRoles().stream()
+                    .anyMatch(role -> role.getName().equals("admin"));
+            boolean isOwner = email.equals(foundRecipe.getUser().getEmail());
+
+            if (isAdmin || isOwner) {
                 RecipeDTO dto = convertToDTO(foundRecipe);
                 dao.delete(foundRecipe.getId());
                 ctx.status(HttpStatus.OK).json(dto);
             } else {
-                throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "Recipe was not found: " + id, timestamp);
+                throw new ApiException(HttpStatus.FORBIDDEN.getCode(), "You are not authorized to delete this recipe", timestamp);
             }
         };
     }
+
 
 
     public static Handler getById(RecipeDAO dao) {
