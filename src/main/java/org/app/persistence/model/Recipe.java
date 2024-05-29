@@ -21,6 +21,9 @@ public class Recipe {
     private String name;
     private String ingredients;
     private String instructions;
+    private String category;
+
+
     private String imageUrl;
 
     @JsonIgnore

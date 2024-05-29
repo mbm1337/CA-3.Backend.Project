@@ -60,8 +60,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVuc
 }
 
 ### Update recipe
-PUT http://localhost:7000/api/recipe/admin
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NDU4MjksImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.a_fYu2ysQ3schjpDjBkAn-q8YbnfGrD71W6op2aX9Qs
+PUT http://localhost:7000/api/recipe/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjk4Njg4MywiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.DUi46K-r2viw6xslBl_s8-N9TEcvhp7_7p-YRZWrMmM
 
 {
   "id": 1,
