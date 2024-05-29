@@ -1,7 +1,7 @@
 package org.app;
 
-import rest.ApplicationConfig;
-import routes.Route;
+import org.app.rest.ApplicationConfig;
+import org.app.routes.Route;
 
 public class Main {
     public static void main(String[] args) {
