@@ -26,6 +26,7 @@ public class CommentController {
                 .id(comment.getId())
                 .text(comment.getText())
                 .date(comment.getDate())
+                .userEmail(comment.getUser().getEmail()) // Set the user's email
                 .build();
     }
 

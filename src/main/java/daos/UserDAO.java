@@ -87,19 +87,32 @@ public class UserDAO implements ISecurityDAO {
     }
 
     @Override
-    public User addUserRole(String username, String role) {
+    public User addUserRole(String email, String role) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            User foundUser = em.find(User.class, username);
-            Role foundRole = em.find(Role.class, role);
 
-            // Check if either the user or the role was not found
-            if (foundUser == null || foundRole == null) {
+            // Find brugeren
+            User foundUser = em.find(User.class, email);
+
+            // Check om brugeren findes
+            if (foundUser == null) {
                 em.getTransaction().rollback();
                 return null;
             }
 
-            foundUser.addRole(foundRole);
+            // Find den nye rolle
+            Role newRoleEntity = em.find(Role.class, role);
+
+            // Check om den nye rolle findes
+            if (newRoleEntity == null) {
+                em.getTransaction().rollback();
+                return null;
+            }
+
+            // Opdater brugerens rolle
+            foundUser.getRoles().clear(); // Fjern alle eksisterende roller
+            foundUser.addRole(newRoleEntity); // Tilføj den nye rolle
+
             em.merge(foundUser);
             em.getTransaction().commit();
             return foundUser;
@@ -110,15 +123,15 @@ public class UserDAO implements ISecurityDAO {
     }
 
     @Override
-    public User deleteUser(String username) {
+    public User deleteUser(String email) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            User foundUser = em.find(User.class, username);
+            User foundUser = em.find(User.class, email);
             em.remove(foundUser);
             em.getTransaction().commit();
             return foundUser;
         }catch (EntityNotFoundException e) {
-            throw new EntityNotFoundException("No user found with username: " + username);
+            throw new EntityNotFoundException("No user found with username: " + email);
         }
     }
 
