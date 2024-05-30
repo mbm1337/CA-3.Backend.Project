@@ -23,6 +23,7 @@ public class RecipeController {
         return RecipeDTO.builder()
                 .id(recipe.getId())
                 .name(recipe.getName())
+                .category(recipe.getCategory())
                 .ingredients(recipe.getIngredients())
                 .instructions(recipe.getInstructions())
                 .imageUrl(recipe.getImageUrl())

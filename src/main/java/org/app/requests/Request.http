@@ -47,12 +47,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVuc
 
 ### Upload recipe
 POST http://localhost:7000/api/recipe/
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjkzMTczMCwiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.Zr5HB3PwMoVinTX2VP-FtGwSTxWWVbKN4TcwE0gCeSI
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNzA2MzIwMiwiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.GN4yuowJyzCDWop3xAWak1xSGofiRQIngrUiW35tDpw
 
 {
   "name": "sandwich",
-  "ingredients": "5 æg og 1asdasd kg mel",
-  "instructions": "Bland æg og masdasdel sammen",
+  "ingredients": "5 æg og 1 kg mel",
+  "instructions": "Bland æg og mel sammen",
+  "category": "Breakfast",
   "imageUrl": "demo5.jpg",
   "user": {
      "email": "jens"
@@ -61,7 +62,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVuc
 
 ### Update recipe
 PUT http://localhost:7000/api/recipe/2
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjk4Njg4MywiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.DUi46K-r2viw6xslBl_s8-N9TEcvhp7_7p-YRZWrMmM
+Authorization: Bearer ywiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.DUi46K-r2viw6xslBl_s8-N9TEcvhp7_7p-YRZWrMmM
 
 {
   "id": 1,
