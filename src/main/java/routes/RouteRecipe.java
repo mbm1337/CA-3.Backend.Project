@@ -32,7 +32,7 @@ public class RouteRecipe {
                 get("/{id}", customLogger.handleExceptions(RecipeController.getById(recipeDAO)), Role.ANYONE);
                 get("/personal/{user_id}", customLogger.handleExceptions(RecipeController.getAllByEmail(recipeDAO)), Role.USER, Role.ADMIN);
                 post("/", customLogger.handleExceptions(RecipeController.create(recipeDAO)), Role.USER, Role.ADMIN);
-                put("/{user_id}", customLogger.handleExceptions(RecipeController.update(recipeDAO, userDAO)), Role.USER, Role.ADMIN);
+                put("/{id}", customLogger.handleExceptions(RecipeController.update(recipeDAO, userDAO)), Role.USER, Role.ADMIN);
                 delete("/{user_id}", customLogger.handleExceptions(RecipeController.delete(recipeDAO)), Role.USER, Role.ADMIN);
 
                 // Add endpoints for favorites

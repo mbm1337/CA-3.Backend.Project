@@ -26,6 +26,7 @@ public class RecipeController {
                 .ingredients(recipe.getIngredients())
                 .instructions(recipe.getInstructions())
                 .imageUrl(recipe.getImageUrl())
+                .category(recipe.getCategory())
                 .build();
     }
 
@@ -113,20 +114,20 @@ public class RecipeController {
 
     public static Handler update(RecipeDAO recipeDAO, UserDAO userDAO) {
         return ctx -> {
-            String email = ctx.pathParam("user_id");
+            int recipeId = Integer.parseInt(ctx.pathParam("id")); // Assuming the recipe ID is an int
             Recipe recipe = ctx.bodyAsClass(Recipe.class);
-            User user = userDAO.getByString(email);
-            if (user != null) {
-                recipe.setUser(user);
-                int i = recipeDAO.update(recipe);
-                if (i > 0) {
-                    RecipeDTO dto = convertToDTO(recipe);
-                    ctx.json(dto);
-                } else {
-                    throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "Recipe not found for id: " + recipe.getId(), timestamp);
-                }
+
+            // Update recipe ID to match the one from the path
+            recipe.setId(recipeId);
+
+            // Assuming you don't need to associate the user with the recipe when updating
+
+            int i = recipeDAO.update(recipe);
+            if (i > 0) {
+                RecipeDTO dto = convertToDTO(recipe);
+                ctx.json(dto);
             } else {
-                throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "User not found for email: " + user.getEmail(), timestamp);
+                throw new ApiException(HttpStatus.NOT_FOUND.getCode(), "Recipe not found for id: " + recipeId, timestamp);
             }
         };
     }
