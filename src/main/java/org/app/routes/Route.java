@@ -12,7 +12,7 @@ public class Route {
     private static RecipeDAO recipeDAO = RecipeDAO.getInstance(emf);
     private static UserDAO userDAO = UserDAO.getInstance(emf);
     private static CommentDAO commentDAO = CommentDAO.getInstance(emf);
-    private static RouteRecipe routeRecipe = new RouteRecipe(recipeDAO, userDAO);
+    private static routes.RouteRecipe routeRecipe = new routes.RouteRecipe(recipeDAO, userDAO);
 
 
     private static RouteComment routeComment = new RouteComment(commentDAO, userDAO,recipeDAO);

@@ -1,13 +1,14 @@
 package routes;
 
-import controllers.RecipeController;
-import controllers.SecurityController;
-import daos.RecipeDAO;
-import daos.UserDAO;
+import org.app.controllers.RecipeController;
+import org.app.controllers.SecurityController;
+import org.app.daos.RecipeDAO;
+import org.app.daos.UserDAO;
 import io.javalin.apibuilder.EndpointGroup;
 import jakarta.persistence.EntityManagerFactory;
-import logger.CustomLogger;
-import persistence.HibernateConfig;
+import org.app.logger.CustomLogger;
+import org.app.persistence.HibernateConfig;
+import org.app.routes.Role;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 
@@ -33,7 +34,7 @@ public class RouteRecipe {
                 get("/personal/{user_id}", customLogger.handleExceptions(RecipeController.getAllByEmail(recipeDAO)), Role.USER, Role.ADMIN);
                 post("/", customLogger.handleExceptions(RecipeController.create(recipeDAO)), Role.USER, Role.ADMIN);
                 put("/{id}", customLogger.handleExceptions(RecipeController.update(recipeDAO, userDAO)), Role.USER, Role.ADMIN);
-                delete("/{user_id}", customLogger.handleExceptions(RecipeController.delete(recipeDAO)), Role.USER, Role.ADMIN);
+                delete("/{user_id}", customLogger.handleExceptions(RecipeController.delete(recipeDAO, userDAO)), Role.USER, Role.ADMIN);
 
                 // Add endpoints for favorites
                 post("/favorite/{user_email}/{recipe_id}", customLogger.handleExceptions(RecipeController.addFavorite(recipeDAO)), Role.USER, Role.ADMIN);
