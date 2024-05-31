@@ -14,7 +14,7 @@ public class UploadController {
         UploadedFile file = ctx.uploadedFile("image");
         if (file != null) {
             String fileName = UUID.randomUUID().toString() + "_" + file.filename();
-            Path filePath = Paths.get("uploads", fileName);
+            Path filePath = Paths.get("src/main/resources/public/images", fileName);
             Files.copy(file.content(), filePath);
             ctx.status(200).json(Map.of("message", "File uploaded successfully", "fileName", fileName));
         } else {
