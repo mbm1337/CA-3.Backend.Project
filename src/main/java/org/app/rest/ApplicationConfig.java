@@ -12,7 +12,8 @@ import io.javalin.http.HttpStatus;
 import io.javalin.security.RouteRole;
 import jakarta.persistence.EntityManagerFactory;
 import org.app.persistence.HibernateConfig;
-
+import javax.xml.stream.Location;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
@@ -29,7 +30,8 @@ public class ApplicationConfig {
     private Javalin app;
 
     private ApplicationConfig() {
-        ObjectMapper om = new ObjectMapper();
+
+
         app = Javalin.create(config -> {
             config.http.defaultContentType = "application/json";
             config.routing.contextPath = "/api";
@@ -38,6 +40,11 @@ public class ApplicationConfig {
                     it.anyHost();
                 });
             });
+
+            config.staticFiles.add("/uploads");
+
+
+
         });
     }
 
