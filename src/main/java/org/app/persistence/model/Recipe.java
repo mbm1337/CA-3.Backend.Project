@@ -22,6 +22,7 @@ public class Recipe {
     private String ingredients;
     private String instructions;
     private String imageUrl;
+    private String category;
 
     @JsonIgnore
     @ManyToOne()
