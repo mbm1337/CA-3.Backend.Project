@@ -41,7 +41,9 @@ public class ApplicationConfig {
                 });
             });
 
-            config.staticFiles.add("/uploads");
+
+            config.staticFiles.add("/public");
+
 
 
 

@@ -42,7 +42,7 @@ GET http://localhost:7000/api/recipe/1
 
 ### Get recipe by email/username
 GET http://localhost:7000/api/recipe/personal/jens
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjkzMTczMCwiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.Zr5HB3PwMoVinTX2VP-FtGwSTxWWVbKN4TcwE0gCeSI
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTcxODYwNTQsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.FYdZdzEkrcSceJ8GENFNa0OuIHqkPxpr9U1Gi8w2hwk
 
 
 ### Upload recipe
