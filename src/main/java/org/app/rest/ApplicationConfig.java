@@ -19,6 +19,8 @@ import java.util.Date;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
+
 public class ApplicationConfig {
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private static String timestamp = dateFormat.format(new Date());
@@ -33,16 +35,17 @@ public class ApplicationConfig {
 
 
         app = Javalin.create(config -> {
+
             config.http.defaultContentType = "application/json";
             config.routing.contextPath = "/api";
             config.plugins.enableCors(cors -> {
                 cors.add(it -> {
                     it.anyHost();
                 });
+                config.staticFiles.add("/public");
             });
 
 
-            config.staticFiles.add("/public");
 
 
 

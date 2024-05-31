@@ -135,11 +135,6 @@
 
     <build>
         <finalName>app</finalName> <!-- This is the name of the jar file -->
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
 
         <plugins>
 
