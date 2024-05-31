@@ -1,7 +1,8 @@
-package routes;
+package org.app.routes;
 
 import org.app.controllers.RecipeController;
 import org.app.controllers.SecurityController;
+import org.app.controllers.UploadController;
 import org.app.daos.RecipeDAO;
 import org.app.daos.UserDAO;
 import io.javalin.apibuilder.EndpointGroup;
@@ -39,6 +40,8 @@ public class RouteRecipe {
                 // Add endpoints for favorites
                 post("/favorite/{user_email}/{recipe_id}", customLogger.handleExceptions(RecipeController.addFavorite(recipeDAO)), Role.USER, Role.ADMIN);
                 delete("/favorite/{user_email}/{recipe_id}", customLogger.handleExceptions(RecipeController.removeFavorite(recipeDAO)), Role.USER, Role.ADMIN);
+
+                post("/upload", customLogger.handleExceptions(UploadController.uploadImage), Role.USER, Role.ADMIN);
             });
         };
     }

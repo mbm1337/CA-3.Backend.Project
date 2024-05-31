@@ -47,13 +47,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVuc
 
 ### Upload recipe
 POST http://localhost:7000/api/recipe/
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjk3Nzk1NywiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.BLn3N--Fl-pSnYDElw_8l_lBlluEA5oXvl9k1nC8Prw
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTcxNzUzNjUsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.CeCIU7H9PdK26C5dLxWcyzkLNVxMQNK6As1FJvp1xdM
 
 {
   "name": "mortens drømmekage",
   "ingredients": "5 æg og 1asdasd kg mel",
   "instructions": "Bland æg og masdasdel sammen",
   "imageUrl": "demo5.jpg",
+  "category":"seafood",
   "user": {
      "email": "jens"
   }
