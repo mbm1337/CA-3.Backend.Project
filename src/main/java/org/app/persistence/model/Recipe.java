@@ -19,7 +19,9 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    @Column(length = 5000)
     private String ingredients;
+    @Column(length = 5000)
     private String instructions;
     private String imageUrl;
     private String category;
