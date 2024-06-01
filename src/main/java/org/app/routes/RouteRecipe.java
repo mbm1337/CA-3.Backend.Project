@@ -42,7 +42,7 @@ public class RouteRecipe {
                 delete("/favorite/{user_email}/{recipe_id}", customLogger.handleExceptions(RecipeController.removeFavorite(recipeDAO)), Role.USER, Role.ADMIN);
 
                 post("/upload", customLogger.handleExceptions(UploadController.uploadImage), Role.USER, Role.ADMIN);
-                get("/api/images/{filename}", customLogger.handleExceptions(UploadController.sendFile), Role.ANYONE);
+                get("/images/{filename}", customLogger.handleExceptions(UploadController.sendFile), Role.ANYONE);
 
             });
         };
