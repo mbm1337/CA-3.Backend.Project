@@ -40,15 +40,11 @@ public class ApplicationConfig {
             config.routing.contextPath = "/api";
             config.plugins.enableCors(cors -> {
                 cors.add(it -> {
-                    it.anyHost();
+                    it.allowHost("https://gruppe4.altinkaya.dk");
+
                 });
                 config.staticFiles.add("/public");
             });
-
-
-
-
-
 
         });
     }
