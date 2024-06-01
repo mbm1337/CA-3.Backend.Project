@@ -13,20 +13,11 @@ import java.util.Map;
 import java.util.UUID;
 
 public class UploadController {
-
-    private static final String UPLOAD_DIR = "/api/images";
-
     public static Handler uploadImage = ctx -> {
         UploadedFile file = ctx.uploadedFile("image");
         if (file != null) {
-            // Ensure the upload directory exists
-            Path uploadPath = Paths.get(UPLOAD_DIR);
-            if (!Files.exists(uploadPath)) {
-                Files.createDirectories(uploadPath);
-            }
-
             String fileName = UUID.randomUUID().toString() + "_" + file.filename();
-            Path filePath = uploadPath.resolve(fileName);
+            Path filePath = Paths.get("/api/images", fileName);
             Files.copy(file.content(), filePath);
             ctx.status(200).json(Map.of("message", "File uploaded successfully", "fileName", fileName));
         } else {
@@ -36,15 +27,10 @@ public class UploadController {
 
     public static Handler sendFile = ctx -> {
         String fileName = ctx.pathParam("filename");
-        Path filePath = Paths.get(UPLOAD_DIR, fileName);
+        Path filePath = Paths.get("/api/images", fileName);
         if (Files.exists(filePath)) {
-            try (FileInputStream fis = new FileInputStream(filePath.toFile())) {
-                // Determine the content type and set it
-                String contentType = Files.probeContentType(filePath);
-                if (contentType == null) {
-                    contentType = "application/octet-stream"; // Default content type
-                }
-                ctx.contentType(contentType);
+            try {
+                FileInputStream fis = new FileInputStream(filePath.toFile());
                 ctx.result(fis);
             } catch (IOException e) {
                 ctx.status(500).result("Error reading file");
