@@ -117,12 +117,12 @@ GET http://localhost:7000/api/comment/8
 POST http://localhost:7000/api/recipe/favorite/admin/4/
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTY4NTkyNTQsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJ1c2VyIl19.5rQwHABO5pcoPgJCo3kiyN0WhG4yf5mm8SzzN2V7KUU
 ### delete comment
-DELETE http://localhost:7000/api/comment/
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiamVucyIsImV4cCI6MTcxNjkzMzg4OSwiZW1haWwiOiJqZW5zIiwicm9sZXMiOlsidXNlciJdfQ.IyTIaRKuCbMlXWMD9Znt05cFVyJmtSTOIJqept2AZi0
+DELETE http://localhost:7000/api/comment/admin
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJHcnVwcGU0Iiwic3ViIjoiYWRtaW4iLCJleHAiOjE3MTcyODc0NTgsImVtYWlsIjoiYWRtaW4iLCJyb2xlcyI6WyJhZG1pbiJdfQ.YQaZD-_oacAAwqSdEmApKCTcVzbdPV28Gv_9k7RDfxI
 
-{
-5
-}
+
+22
+
 
 
 ### delete opskrift

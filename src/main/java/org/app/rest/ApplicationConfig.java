@@ -41,7 +41,6 @@ public class ApplicationConfig {
             config.plugins.enableCors(cors -> {
                 cors.add(it -> {
                     it.allowHost("https://gruppe4.altinkaya.dk");
-
                 });
                 config.staticFiles.add("/public");
             });

@@ -6,7 +6,9 @@ import lombok.*;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -36,8 +38,10 @@ public class User implements ISecurityUser {
     private Set<Recipe> recipes = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
-    private Set<Comment> comments = new HashSet<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
+
     public User(String email, String password) {
         this.email = email;
         this.password = password;
